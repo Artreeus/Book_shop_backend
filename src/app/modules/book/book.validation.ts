@@ -10,7 +10,8 @@ export const createBookSchema = z.object({
     .min(10, "Description must be at least 10 characters")
     .max(500, "Description cannot exceed 500 characters"),
   quantity: z.number().int().min(0, "Quantity must be a non-negative integer"),
-  inStock: z.boolean().optional().default(true)
+  inStock: z.boolean().optional().default(true),
+  image: z.string().optional(),
 });
 
 export const updateBookSchema = createBookSchema.partial();
