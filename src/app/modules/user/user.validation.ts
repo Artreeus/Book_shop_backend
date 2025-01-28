@@ -6,7 +6,8 @@ export const userRegistrationSchema = z.object({
   password: z.string()
     .min(6, 'Password must be at least 6 characters')
     .max(20, 'Password cannot exceed 20 characters'),
-  role: z.enum(['admin', 'customer']).optional(),
+  role: z.enum(['admin', 'user']).optional(),
+  name: z.string().min(1, 'Name is required'),
 });
 
 export const userLoginSchema = z.object({

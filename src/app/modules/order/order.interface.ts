@@ -1,4 +1,4 @@
-// src/app/modules/order/order.interface.ts
+// order.interface.ts
 import { Types } from 'mongoose';
 
 export type TOrder = {
@@ -9,4 +9,6 @@ export type TOrder = {
   }[];
   totalPrice: number;
   status: 'pending' | 'processing' | 'completed' | 'cancelled';
+  createdAt?: Date;
+  updatedAt?: Date;
 };

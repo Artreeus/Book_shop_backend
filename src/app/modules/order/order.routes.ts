@@ -1,14 +1,12 @@
-// src/app/modules/order/order.routes.ts
+
+// order.routes.ts
 import express from 'express';
-import {
-  createOrder,
-  getUserOrders,
-  getRevenue
-} from './order.controller';
+
 import { 
   authenticateUser, 
   authorizeRoles 
 } from '../../middlewares/auth.middleware';
+import { createOrder, deleteOrder, getAllOrders, getRevenue, getUserOrders, updateOrderStatus } from './order.controller';
 
 const router = express.Router();
 
@@ -29,6 +27,25 @@ router.get(
   authenticateUser, 
   authorizeRoles(['admin']), 
   getRevenue
+);
+
+router.get(
+  '/all', 
+  authenticateUser, 
+  authorizeRoles(['admin']), 
+  getAllOrders
+);
+
+router.patch(
+  '/:orderId/status',
+  authenticateUser,
+  updateOrderStatus
+);
+
+router.delete(
+  '/:orderId',
+  authenticateUser,
+  deleteOrder
 );
 
 export const OrderRoutes = router;

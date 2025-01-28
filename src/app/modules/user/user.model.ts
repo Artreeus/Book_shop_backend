@@ -6,6 +6,11 @@ import { TUser, TUserToken, UserModel } from './user.interface';
 
 const userSchema = new Schema<TUser, UserModel>(
   {
+    name: {
+      type: String,
+      required: [true, 'Name is required'],
+      trim: true,
+    },
     email: {
       type: String,
       required: [true, 'Email is required'],
@@ -20,12 +25,13 @@ const userSchema = new Schema<TUser, UserModel>(
     },
     role: {
       type: String,
-      enum: ['admin', 'customer'],
-      default: 'customer',
+      enum: ['admin', 'user', 'Blocked'],
+      default: 'user',
     }
   },
   { timestamps: true }
 );
+
 
 userSchema.pre('save', async function (next) {
   if (!this.isModified('password')) return next();

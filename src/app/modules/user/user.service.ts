@@ -128,3 +128,74 @@ export const refreshAccessTokenService = async (refreshToken: string) => {
 export const logoutUserService = async (refreshToken: string) => {
   await UserToken.deleteOne({ token: refreshToken });
 };
+
+
+export const updateUserPasswordService = async (
+  email: string,
+  currentPassword: string,
+  newPassword: string
+) => {
+  const user = await User.findOne({ email }).select('+password');
+  if (!user) {
+    throw new Error('User not found');
+  }
+
+  const isPasswordMatch = await User.isPasswordMatched(
+    currentPassword,
+    user.password
+  );
+  if (!isPasswordMatch) {
+    throw new Error('Current password is incorrect');
+  }
+
+  user.password = newPassword;
+  await user.save();
+
+  return { message: 'Password updated successfully' };
+};
+
+export const getAllUsersService = async () => {
+  return await User.find({}, { password: 0 });
+};
+
+export const updateUserStatusService = async (
+  userId: string,
+  status: 'user' | 'Blocked'
+) => {
+  const user = await User.findByIdAndUpdate(
+    userId,
+    { role: status },
+    { new: true, runValidators: true }
+  );
+  
+  if (!user) {
+    throw new Error('User not found');
+  }
+  
+  return user;
+};
+
+export const getUserProfileService = async (email: string) => {
+  const user = await User.findOne({ email }, { password: 0 });
+  if (!user) {
+    throw new Error('User not found');
+  }
+  return user;
+};
+
+export const updateUserProfileService = async (
+  email: string,
+  updateData: { name?: string; email?: string }
+) => {
+  const user = await User.findOneAndUpdate(
+    { email },
+    { $set: updateData },
+    { new: true, runValidators: true }
+  );
+  
+  if (!user) {
+    throw new Error('User not found');
+  }
+  
+  return user;
+};

@@ -1,4 +1,5 @@
-// src/app/modules/order/order.model.ts
+
+// order.model.ts
 import { Schema, model } from 'mongoose';
 import { TOrder } from './order.interface';
 
@@ -30,6 +31,11 @@ const orderSchema = new Schema<TOrder>({
     enum: ['pending', 'processing', 'completed', 'cancelled'],
     default: 'pending',
   }
-}, { timestamps: true });
+}, { 
+  timestamps: true,
+  toJSON: {
+    virtuals: true
+  }
+});
 
 export const Order = model<TOrder>('Order', orderSchema);
