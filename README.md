@@ -23,7 +23,7 @@ Follow these instructions to set up the project on your local machine for develo
 1. **Run These Commands In Your Terminal**
    ```bash
    git clone {This Github Repo}
-   cd book-store-api
+   cd {File Name}
    npm install
    npm run build
    npm run start:prod
