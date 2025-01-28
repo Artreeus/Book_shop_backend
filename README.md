@@ -31,18 +31,18 @@ Follow these instructions to set up the project on your local machine for develo
 2. **Set up environment variables Create a .env file in the project root and configure the following variables:**
 
     ```bash
-PORT=5000
-NODE_ENV=development
+    PORT=5000
+    NODE_ENV=development
 
-# Database Configuration
-DATABASE_URL= Your mongodb Link
+    # Database Configuration
+    DATABASE_URL= Your mongodb Link
 
-# Authentication Configurations
-BCRYPT_SALT_ROUNDS=10
-JWT_SECRET=your-very-secure-jwt-secret
-REFRESH_TOKEN_SECRET="your-very-secure-refresh-token-secret"
-ACCESS_TOKEN_EXPIRES_IN=365d
-REFRESH_TOKEN_EXPIRES_IN=365d
+    # Authentication Configurations
+    BCRYPT_SALT_ROUNDS=10
+    JWT_SECRET=your-very-secure-jwt-secret
+    REFRESH_TOKEN_SECRET="your-very-secure-refresh-token-secret"
+    ACCESS_TOKEN_EXPIRES_IN=365d
+    REFRESH_TOKEN_EXPIRES_IN=365d
 
 3. **Now You are Good to go**
 
