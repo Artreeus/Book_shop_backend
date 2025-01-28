@@ -30,7 +30,7 @@ const orderSchema = new Schema<TOrder>({
     type: String,
     enum: ['pending', 'processing', 'completed', 'cancelled'],
     default: 'pending',
-  }
+  },
 }, { 
   timestamps: true,
   toJSON: {
